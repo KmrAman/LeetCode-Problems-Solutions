@@ -1,0 +1,17 @@
+https://leetcode.com/problems/find-the-difference/
+
+char findTheDifference(string s, string t) {
+        unordered_map<char,int> m;
+        for(int i=0;i<s.length();i++){
+            m[s[i]]++;
+        }
+        for(int i=0;i<t.length();i++){
+            m[t[i]]++;
+        }
+        for(auto x:m){
+            if(x.second%2!=0){
+                return x.first;
+            }
+        }
+        return 0;
+    }
