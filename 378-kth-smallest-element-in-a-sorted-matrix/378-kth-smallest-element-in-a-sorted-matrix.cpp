@@ -18,6 +18,7 @@ public:
             else
                     l=mid+1;
         }
+        cout<<h;
         return l;
     }
 };
