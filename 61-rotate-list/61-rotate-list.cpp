@@ -23,7 +23,8 @@ public:
         
         temp->next=head;
         k=k%count;
-        k=count-k;
+        k=count-k-1;
+        temp=head;
         while(k--){
             cout<<temp->val<<"  ";
             temp=temp->next;
