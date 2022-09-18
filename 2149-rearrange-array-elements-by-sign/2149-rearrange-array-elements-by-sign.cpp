@@ -1,23 +1,18 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        queue<int> q1,q2;
+        int i=0,j=1;
+        vector<int> ans(nums.size());
         for(auto &x:nums){
-            if(x>0)
-                q1.push(x);
-            else
-                q2.push(x);
-        }
-        for(int i=0;i<nums.size();i++){
-            if(i%2==0){
-                nums[i]=q1.front();
-                q1.pop();
+            if(x>0){
+                ans[i]=x;
+                i+=2;
             }
             else{
-                nums[i]=q2.front();
-                q2.pop();
+                ans[j]=x;
+                j+=2;
             }
         }
-        return nums;
+        return ans;
     }
 };
