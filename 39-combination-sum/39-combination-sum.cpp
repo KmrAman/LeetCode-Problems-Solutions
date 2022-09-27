@@ -8,7 +8,7 @@ public:
     }
 private:
     void backtracking(int ind,int target,vector<int>& nums,vector<int> &path, vector<vector<int>> &res) {
-        if(ind==nums.size()){
+        if(ind==nums.size() || target==0){
             if (target == 0) {
             res.push_back(path);
             }
