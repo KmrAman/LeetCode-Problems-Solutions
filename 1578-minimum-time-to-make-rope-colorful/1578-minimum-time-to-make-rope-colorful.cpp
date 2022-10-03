@@ -1,27 +1,23 @@
 class Solution {
 public:
-    int minCost(string col, vector<int>& t) {
-        if(col.size()==1)
-            return 0;
-        int temp=0;
-        string ans="";
-        int res=0;
-        ans+=col[0];
-        for(int i=1;i<col.size();i++){
-            if(ans[ans.size()-1]==col[i]){
-                if(t[temp]>t[i]){
-                    res+=t[i];
-                }
-                else{
-                    res+=t[temp];
-                    temp=i;
-                }
+    int minCost(string c, vector<int>& t) {
+        int n=c.size();
+        int ans=0;
+        int sum=t[0],mx=t[0];
+        for(int i=1;i<n;i++){
+            if(c[i]==c[i-1]){
+                sum+=t[i];
+                mx=max(mx,t[i]);
+                
             }
             else{
-                ans+=col[i];
-                temp=i;
+                ans+=(sum-mx);
+                mx=t[i];
+                sum=t[i];
             }
+            
         }
-        return res;
+        ans+=(sum-mx);
+        return ans;
     }
 };
