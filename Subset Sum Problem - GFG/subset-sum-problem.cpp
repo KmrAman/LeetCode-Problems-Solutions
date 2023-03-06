@@ -9,23 +9,27 @@ using namespace std;
 
 class Solution{   
 public:
-    int solve(int n,vector<int> &arr,int target,vector<vector<int>> &dp){
-        if(target==0){
-            return 1;
-        }
-        if(n==0){
-            return 0;
-        }
-        if(dp[n][target]!=-1){
-            return dp[n][target];
-        }
-        int ans=(solve(n-1,arr,target-arr[n-1],dp)|| solve(n-1,arr,target,dp));
-        return dp[n][target]=ans;
-    }
+    
     bool isSubsetSum(vector<int>arr, int sum){
         // code here 
-        vector<vector<int>> dp(arr.size()+1,vector<int> (sum+1,-1));
-        return solve(arr.size(),arr,sum,dp);
+        vector<vector<int>> dp(arr.size()+1,vector<int> (sum+1));
+        for(int i=1;i<sum+1;i++){
+            dp[0][i]=0;
+        }
+        for(int i=0;i<arr.size()+1;i++){
+            dp[i][0]=1;
+        }
+        for(int i=1;i<arr.size()+1;i++){
+            for(int j=1;j<sum+1;j++){
+                if(arr[i-1]<=j){
+                    dp[i][j]=dp[i-1][j-arr[i-1]] || dp[i-1][j];
+                }
+                else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+        }
+        return dp[arr.size()][sum];
     }
 };
 
